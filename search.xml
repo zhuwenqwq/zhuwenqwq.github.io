@@ -259,8 +259,8 @@
   <entry>
     <title>D - AtCoder Janken</title>
     <url>/2024/08/04/D-AtCoder-Janken/</url>
-    <content><![CDATA[<span id="more"></span>
-<h1 id="D-AtCoder-Janken-3"><a href="#D-AtCoder-Janken-3" class="headerlink" title="D - AtCoder Janken 3"></a>D - AtCoder Janken 3</h1><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>本题就是让你求出赢得最大局数，但连续两局不能出一样的。</p>
+    <content><![CDATA[<h1 id="D-AtCoder-Janken-3"><a href="#D-AtCoder-Janken-3" class="headerlink" title="D - AtCoder Janken 3"></a>D - AtCoder Janken 3</h1><span id="more"></span>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>本题就是让你求出赢得最大局数，但连续两局不能出一样的。</p>
 <h2 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h2><p>本题很容易让我们想到 $dp$ 转移，将能够赢它的方案数 $+1$，将自己由其他的来转移过来。</p>
 <script type="math/tex; mode=display">
 \left\{\begin{matrix} 

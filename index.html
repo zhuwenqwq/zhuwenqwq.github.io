@@ -340,7 +340,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-08-04 08:40:58 / 修改时间：08:44:22" itemprop="dateCreated datePublished" datetime="2024-08-04T08:40:58+08:00">2024-08-04</time>
+      <time title="创建时间：2024-08-04 08:40:58 / 修改时间：08:46:09" itemprop="dateCreated datePublished" datetime="2024-08-04T08:40:58+08:00">2024-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -362,18 +362,15 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody">
-          <span id="more"></span>
-<h1 id="D-AtCoder-Janken-3"><a href="#D-AtCoder-Janken-3" class="headerlink" title="D - AtCoder Janken 3"></a>D - AtCoder Janken 3</h1><h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>本题就是让你求出赢得最大局数，但连续两局不能出一样的。</p>
-<h2 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h2><p>本题很容易让我们想到 $dp$ 转移，将能够赢它的方案数 $+1$，将自己由其他的来转移过来。</p>
-<script type="math/tex; mode=display">
-\left\{\begin{matrix} 
-dp_{i,j}=max(dp_{i-1,k},dp_{i-1,w})\\
-dp_{i,k}=max(dp_{i-1,j},dp_{i-1,w})+1
-\end{matrix}\right.</script><p>$dp_{i,j}$ 表示到 $i$ 这个位置，出 $j$ 的所有方案数，$k$ 表示能够赢了它的方式，$w$ 表示另一种方式。</p>
-<p>最后求一下所有方式的方案数的最大值即可。</p>
-<p>剩下的看代码实现吧，代码通俗易懂。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n;</span><br><span class="line">string s;</span><br><span class="line">map&lt;<span class="type">char</span>,<span class="type">int</span>&gt;dp[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">    fst;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    cin&gt;&gt;s;</span><br><span class="line">    s=<span class="string">&quot; &quot;</span>+s;</span><br><span class="line">    <span class="built_in">fup</span>(i,<span class="number">1</span>,n)&#123;</span><br><span class="line">    	<span class="keyword">if</span>(s[i]==<span class="string">&#x27;R&#x27;</span>)&#123;</span><br><span class="line">    		dp[i][<span class="string">&#x27;R&#x27;</span>]=<span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="string">&#x27;P&#x27;</span>],dp[i<span class="number">-1</span>][<span class="string">&#x27;S&#x27;</span>]);</span><br><span class="line">    		dp[i][<span class="string">&#x27;P&#x27;</span>]=<span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="string">&#x27;R&#x27;</span>],dp[i<span class="number">-1</span>][<span class="string">&#x27;S&#x27;</span>])+<span class="number">1</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">else</span> <span class="keyword">if</span>(s[i]==<span class="string">&#x27;S&#x27;</span>)&#123;</span><br><span class="line">    		dp[i][<span class="string">&#x27;S&#x27;</span>]=<span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="string">&#x27;P&#x27;</span>],dp[i<span class="number">-1</span>][<span class="string">&#x27;R&#x27;</span>]);</span><br><span class="line">    		dp[i][<span class="string">&#x27;R&#x27;</span>]=<span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="string">&#x27;P&#x27;</span>],dp[i<span class="number">-1</span>][<span class="string">&#x27;S&#x27;</span>])+<span class="number">1</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">else</span>&#123;</span><br><span class="line">    		dp[i][<span class="string">&#x27;P&#x27;</span>]=<span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="string">&#x27;R&#x27;</span>],dp[i<span class="number">-1</span>][<span class="string">&#x27;S&#x27;</span>]);</span><br><span class="line">    		dp[i][<span class="string">&#x27;S&#x27;</span>]=<span class="built_in">max</span>(dp[i<span class="number">-1</span>][<span class="string">&#x27;R&#x27;</span>],dp[i<span class="number">-1</span>][<span class="string">&#x27;P&#x27;</span>])+<span class="number">1</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">max</span>(dp[n][<span class="string">&#x27;R&#x27;</span>],<span class="built_in">max</span>(dp[n][<span class="string">&#x27;P&#x27;</span>],dp[n][<span class="string">&#x27;S&#x27;</span>]))&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+          <h1 id="D-AtCoder-Janken-3"><a href="#D-AtCoder-Janken-3" class="headerlink" title="D - AtCoder Janken 3"></a>D - AtCoder Janken 3</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/08/04/D-AtCoder-Janken/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
